@@ -1,0 +1,12 @@
+cffi==2.0.0
+click==8.2.1
+dss-python==0.15.7
+dss_python_backend==0.14.5
+helics==3.6.1
+numpy==2.2.6
+opendssdirect.py==0.9.4
+pycparser==2.23
+strip-hints==0.1.13
+typing_extensions==4.15.0
+pandas>=1.5.0
+matplotlib>=3.5.0
