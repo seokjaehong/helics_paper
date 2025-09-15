@@ -36,12 +36,10 @@ dss.Basic.ClearAll()
 ieee13_path = "/Users/seokjaehong/work/cosim-paper/electricdss-tst/Version8/Distrib/IEEETestCases/13Bus/IEEE13Nodeckt.dss"
 print("IEEE13Nodeckt 위치:", ieee13_path)
 
-
-
 dss.Text.Command(f"Compile [{ieee13_path}]")
 dss.Solution.Solve()
 
-# 데이터 저장을 위한 리스트
+# 데이터 저장을 위한 리스트 (여러 버스 모니터링)
 voltage_data = []
 
 # -------------------------
@@ -64,16 +62,41 @@ while time < 24:
     # 시뮬레이션 실행
     dss.Solution.Solve()
 
-    # Bus650 전압 가져오기
-    dss.Circuit.SetActiveBus("650")
-    voltages = dss.Bus.PuVoltage()
-    print(f"[t={time}] Bus650 Voltage (pu): {voltages}")
-
-    # 데이터 저장 - 복소수 전압을 크기와 각도로 변환
-    import cmath
-    voltage_magnitude = abs(voltages[0] + 1j * voltages[1])  # 첫 번째 전압의 크기
-    voltage_angle = cmath.phase(voltages[0] + 1j * voltages[1])  # 첫 번째 전압의 각도
-    voltage_data.append([time, voltage_magnitude, voltage_angle])
+    # 여러 버스의 전압 데이터 수집
+    bus_data = {}
+    buses_to_monitor = ["650", "680", "692"]  # 변전소, 말단 버스들
+    
+    for bus_name in buses_to_monitor:
+        try:
+            dss.Circuit.SetActiveBus(bus_name)
+            voltages = dss.Bus.PuVoltage()
+            
+            # 복소수 전압을 크기와 각도로 변환
+            import cmath
+            voltage_magnitude = abs(voltages[0] + 1j * voltages[1])  # 첫 번째 전압의 크기
+            voltage_angle = cmath.phase(voltages[0] + 1j * voltages[1])  # 첫 번째 전압의 각도
+            
+            bus_data[bus_name] = {
+                'magnitude': voltage_magnitude,
+                'angle': voltage_angle
+            }
+            
+            print(f"[t={time}] Bus{bus_name} Voltage (pu): {voltage_magnitude:.6f} ∠{voltage_angle:.6f}")
+            
+        except Exception as e:
+            print(f"[t={time}] Bus{bus_name} 전압 읽기 실패: {e}")
+            bus_data[bus_name] = {'magnitude': 0, 'angle': 0}
+    
+    # 데이터 저장 - 모든 버스의 전압 정보
+    voltage_data.append([
+        time,
+        bus_data.get("650", {}).get('magnitude', 0),
+        bus_data.get("650", {}).get('angle', 0),
+        bus_data.get("680", {}).get('magnitude', 0),
+        bus_data.get("680", {}).get('angle', 0),
+        bus_data.get("692", {}).get('magnitude', 0),
+        bus_data.get("692", {}).get('angle', 0)
+    ])
 
     # HELICS publish
     h.helicsPublicationPublishVector(pub, voltages)
@@ -88,7 +111,7 @@ print(f"[DEBUG] 파일 경로: {file_path}")
 
 with open(file_path, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow(['time', 'voltage_magnitude', 'voltage_angle'])
+    writer.writerow(['time', 'bus650_magnitude', 'bus650_angle', 'bus680_magnitude', 'bus680_angle', 'bus692_magnitude', 'bus692_angle'])
     writer.writerows(voltage_data)
 
 print(f"[DEBUG] 파일 저장 완료, 파일 존재 확인: {os.path.exists(file_path)}")

@@ -1,0 +1,7 @@
+#!/Users/seokjaehong/work/cosim-paper/venv/bin/python3
+import sys
+from strip_hints.strip_hints_main import process_command_line
+if __name__ == '__main__':
+    if sys.argv[0].endswith('.exe'):
+        sys.argv[0] = sys.argv[0][:-4]
+    sys.exit(process_command_line())

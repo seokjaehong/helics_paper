@@ -1,19 +1,19 @@
 {
   "case1": {
-    "voltage_max": 0.9999107325084668,
-    "voltage_min": 0.9999107324814738,
-    "voltage_mean": 0.9999107324826219,
-    "voltage_std": 5.506077579939135e-12,
-    "voltage_range": 2.6993074442316356e-11,
+    "voltage_max": 0.9827676170319048,
+    "voltage_min": 0.982767609778078,
+    "voltage_mean": 0.9827676100842225,
+    "voltage_std": 1.4798606153204966e-09,
+    "voltage_range": 7.253826872499758e-09,
     "overvoltage_count": 0,
     "undervoltage_count": 0
   },
   "case2": {
-    "voltage_max": 0.9999167906181312,
-    "voltage_min": 0.999905229560981,
-    "voltage_mean": 0.999911212936138,
-    "voltage_std": 2.6122438394668977e-06,
-    "voltage_range": 1.1561057150166754e-05,
+    "voltage_max": 0.985694974381518,
+    "voltage_min": 0.9798846698545576,
+    "voltage_mean": 0.9828989892651215,
+    "voltage_std": 0.0013252669534242673,
+    "voltage_range": 0.005810304526960408,
     "overvoltage_count": 0,
     "undervoltage_count": 0
   },
@@ -25,8 +25,8 @@
     "soc_utilization": 0.9000000000000001
   },
   "improvement": {
-    "voltage_range_reduction": -42829616.09948505,
-    "std_reduction": -47442817.42245618,
+    "voltage_range_reduction": -80099751.14185812,
+    "std_reduction": -89553398.4649383,
     "overvoltage_reduction": 0,
     "undervoltage_reduction": 0
   }

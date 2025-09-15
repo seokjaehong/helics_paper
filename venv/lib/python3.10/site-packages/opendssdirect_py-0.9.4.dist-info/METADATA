@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: opendssdirect.py
+Version: 0.9.4
+Summary: Python direct-mode interface to the alternative implementation of OpenDSS from DSS-Extensions.org
+Project-URL: Homepage, https://github.com/dss-extensions/OpenDSSDirect.py
+Project-URL: Documentation, https://dss-extensions.org/OpenDSSDirect.py
+Project-URL: Repository, https://github.com/dss-extensions/OpenDSSDirect.py.git
+Project-URL: Bug Tracker, https://github.com/dss-extensions/OpenDSSDirect.py/issues
+Author-email: Dheepak Krishnamurthy <me@kdheepak.com>, Paulo Meira <pmeira@ieee.org>
+Maintainer-email: Dheepak Krishnamurthy <me@kdheepak.com>, Paulo Meira <pmeira@ieee.org>
+License: Copyright 2017 Alliance for Sustainable Energy, LLC
+        
+        NOTICE: This software was developed at least in part by Alliance for Sustainable Energy, LLC (“Alliance”) under Contract No. DE-AC36-08GO28308 with the U.S. Department of Energy and the U.S. Government retains for itself and others acting on its behalf a nonexclusive, paid-up, irrevocable worldwide license in the software to reproduce, prepare derivative works, distribute copies to the public, perform publicly and display publicly, and to permit others to do so.
+        
+        Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, the above government rights notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice, the above government rights notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+        
+        3. The entire corresponding source code of any redistribution, with or without modification, by a research entity, including but not limited to any contracting manager/operator of a United States National Laboratory, any institution of higher learning, and any non-profit organization, must be made publicly available under this license for as long as the redistribution is made available by the research entity.
+        
+        4. Redistribution of this software, without modification, must refer to the software by the same designation. Redistribution of a modified version of this software (i) may not refer to the modified version by the same designation, or by any confusingly similar designation, and (ii) must refer to the underlying software originally provided by Alliance as “OpenDSSDirect.py”. Except to comply with the foregoing, the term “OpenDSSDirect.py”, or any confusingly similar designation may not be used to refer to any modified version of this software or any modified version of the underlying software originally provided by Alliance without the prior written consent of Alliance.
+        
+        5. The name of the copyright holder, contributors, the United States Government, the United States Department of Energy, or any of their employees may not be used to endorse or promote products derived from this software without specific prior written permission.
+        
+License-File: LICENSE
+Keywords: altdss,cffi,electric power systems,opendss,opendssdirect
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Build Tools
+Requires-Python: >=3.7
+Requires-Dist: dss-python==0.15.7
+Provides-Extra: extras
+Requires-Dist: altdss; extra == 'extras'
+Requires-Dist: matplotlib; extra == 'extras'
+Requires-Dist: networkx; extra == 'extras'
+Requires-Dist: pandas; extra == 'extras'
+Requires-Dist: scipy; extra == 'extras'
+Description-Content-Type: text/markdown
+
+# OpenDSSDirect.py
+[![GitHub Build Status](https://github.com/dss-extensions/OpenDSSDirect.py/actions/workflows/tests.yml/badge.svg)](https://github.com/dss-extensions/OpenDSSDirect.py/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/dss-extensions/OpenDSSDirect.py/branch/master/graph/badge.svg)](https://codecov.io/gh/dss-extensions/OpenDSSDirect.py)
+[![PyPI](https://img.shields.io/pypi/v/OpenDSSDirect.py.svg)](https://pypi.python.org/pypi/OpenDSSDirect.py/)
+[![PyPI Download stats](https://static.pepy.tech/badge/opendssdirect-py/month)](https://pepy.tech/project/opendssdirect-py)
+[![Documentation](https://img.shields.io/badge/docs-ready-blue.svg)](http://dss-extensions.org/OpenDSSDirect.py)
+
+OpenDSSDirect.py is a cross-platform Python package implements a "direct" library interface to [our customized/alternative implementation](https://github.com/dss-extensions/dss_capi) of [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx) using [DSS-Python](https://github.com/dss-extensions/DSS-Python/).
+OpenDSS is an open-source distribution system simulator [distributed by EPRI](https://sourceforge.net/p/electricdss/). See [OpenDSSDirect.jl](https://github.com/dss-extensions/OpenDSSDirect.jl) for a similar package in Julia, and for more context about this project and its components (including alternatives in MATLAB, C++, C#/.NET, Go, and Rust), please check [https://dss-extensions.org/](https://dss-extensions.org/) and our hub repository at [dss-extensions/dss-extensions](https://github.com/dss-extensions/dss-extensions) for more documentation, discussions and the [FAQ](https://dss-extensions.org/faq.html).
+
+An alternative Python package is being developed in [AltDSS-Python](https://dss-extensions.org/AltDSS-Python/). It can be used together with OpenDSSDirect.py.
+
+
+<p align="center">
+    <img alt="Overview of related projects" src="https://github.com/dss-extensions/dss-extensions/blob/main/images/repomap.png?raw=true">
+</p>
+
+
+*As a reminder, although very compatible, this project is not supported by EPRI.*
+
+**This package is available for Windows, Mac and Linux, including ARM and x86 variants.**
+
+## Documentation
+
+The documentation for this package can be found [here](http://dss-extensions.org/OpenDSSDirect.py).
+
+## Installation
+
+**Recommended**: Install Python using Miniconda or Anaconda
+
+Open a command line interface and type the following.
+
+```bash
+pip install 'OpenDSSDirect.py[extras]'
+```
+
+See the [installation](https://dss-extensions.org/OpenDSSDirect.py/notebooks/Installation.html) instructions for more information.
+
+Updating from pre-v0.9 versions? [See the upgrade guide for recommendations.](https://dss-extensions.org/OpenDSSDirect.py/updating_to_0.9.html)
+
+## Troubleshooting
+
+It is recommended to use `conda` to install pandas, which is currently a dependency of this package.
+This package interfaces with OpenDSS using the "direct" library interface, so a good understanding of OpenDSS will help troubleshooting.
+
+If you are having issues using this Python interface, feel free to open an Issue on GitHub [here](https://github.com/dss-extensions/OpenDSSDirect.py/issues/new).
+
+## Thanks
+
+Thanks to @tshort, Davis, @temcdrm, @GordStephen, @Muxelmann and @PMeira for their contributions, as well as all the users for their valuable feedback.
+
+See also our repositories for [DSS-Python](https://github.com/dss-extensions/DSS-Python) for the underlying Python package used in this package, and 
+[AltDSS/DSS C-API](https://github.com/dss-extensions/dss_capi) for the modified and extended OpenDSS codebase used in DSS-Extensions.

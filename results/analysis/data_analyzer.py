@@ -43,8 +43,12 @@ class CoSimulationAnalyzer:
 
         metrics = {}
 
-        # Case 1 (ESS 없음) 지표 - 전압 크기
-        case1_voltages = self.case1_voltage_data['voltage_magnitude']
+        # Case 1 (ESS 없음) 지표 - 여러 버스 분석 (말단 버스 680 중심)
+        if 'bus680_magnitude' in self.case1_voltage_data.columns:
+            case1_voltages = self.case1_voltage_data['bus680_magnitude']  # 말단 버스 680
+        else:
+            case1_voltages = self.case1_voltage_data['bus650_magnitude']  # 백업: 변전소 버스 650
+            
         metrics['case1'] = {
             'voltage_max': case1_voltages.max(),
             'voltage_min': case1_voltages.min(),
@@ -55,9 +59,13 @@ class CoSimulationAnalyzer:
             'undervoltage_count': (case1_voltages < 0.95).sum()
         }
 
-        # Case 2 (ESS 있음) 지표 - 전압 크기
+        # Case 2 (ESS 있음) 지표 - 여러 버스 분석 (말단 버스 680 중심)
         if self.case2_voltage_data is not None:
-            case2_voltages = self.case2_voltage_data['voltage_magnitude']
+            if 'bus680_magnitude' in self.case2_voltage_data.columns:
+                case2_voltages = self.case2_voltage_data['bus680_magnitude']  # 말단 버스 680
+            else:
+                case2_voltages = self.case2_voltage_data['bus650_magnitude']  # 백업: 변전소 버스 650
+                
             metrics['case2'] = {
                 'voltage_max': case2_voltages.max(),
                 'voltage_min': case2_voltages.min(),
@@ -104,7 +112,7 @@ class CoSimulationAnalyzer:
         print("📊 Co-Simulation 분석 결과 요약")
         print("="*80)
 
-        print("\n🔹 Case 1 (ESS 없음)")
+        print("\n🔹 Case 1 (ESS 없음) - 말단 버스 680")
         print(f"  전압 범위: {metrics['case1']['voltage_min']:.6f} ~ {metrics['case1']['voltage_max']:.6f} pu")
         print(f"  전압 변동폭: {metrics['case1']['voltage_range']:.6f} pu")
         print(f"  전압 표준편차: {metrics['case1']['voltage_std']:.6f}")
@@ -112,7 +120,7 @@ class CoSimulationAnalyzer:
         print(f"  저전압 발생 횟수: {metrics['case1']['undervoltage_count']}회")
 
         if 'case2' in metrics:
-            print("\n🔹 Case 2 (ESS 있음)")
+            print("\n🔹 Case 2 (ESS 있음) - 말단 버스 680")
             print(f"  전압 범위: {metrics['case2']['voltage_min']:.6f} ~ {metrics['case2']['voltage_max']:.6f} pu")
             print(f"  전압 변동폭: {metrics['case2']['voltage_range']:.6f} pu")
             print(f"  전압 표준편차: {metrics['case2']['voltage_std']:.6f}")
