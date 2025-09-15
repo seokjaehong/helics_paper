@@ -1,0 +1,33 @@
+{
+  "case1": {
+    "voltage_max": 1.005597211827362,
+    "voltage_min": 0.9787427410918916,
+    "voltage_mean": 0.9917295912819142,
+    "voltage_std": 0.006337253295006958,
+    "voltage_range": 0.026854470735470315,
+    "overvoltage_count": 0,
+    "undervoltage_count": 0
+  },
+  "case2": {
+    "voltage_max": 1.0053930712214174,
+    "voltage_min": 0.9790686765422024,
+    "voltage_mean": 0.991737661110209,
+    "voltage_std": 0.006236582389374589,
+    "voltage_range": 0.02632439467921499,
+    "overvoltage_count": 0,
+    "undervoltage_count": 0
+  },
+  "ess": {
+    "total_charge_energy": 1570.0868536687947,
+    "total_discharge_energy": 1392.828953272301,
+    "max_soc": 0.9885762172864244,
+    "min_soc": 0.4599999999999999,
+    "soc_utilization": 0.5285762172864246
+  },
+  "improvement": {
+    "voltage_range_reduction": 1.9738838328888804,
+    "std_reduction": 1.5885573914441218,
+    "overvoltage_reduction": 0,
+    "undervoltage_reduction": 0
+  }
+}

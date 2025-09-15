@@ -1,0 +1,8 @@
+[2025-09-16 00:37:05.382] [console] [error] commERROR||dss_federate (0)[connecting]::Unable to bind zmq pull socket giving up tcp://127.0.0.1:23492
+[2025-09-16 00:37:05.382] [console] [error] commERROR||dss_federate (0)[connecting]::receiver connection failure
+Traceback (most recent call last):
+  File "/Users/seokjaehong/work/cosim-paper/case_second/opendss_fed.py", line 18, in <module>
+    fed = h.helicsCreateValueFederate("OpenDSS Federate", fedinfo)
+  File "/Users/seokjaehong/work/cosim-paper/venv/lib/python3.10/site-packages/helics/capi.py", line 3649, in helicsCreateValueFederate
+    raise HelicsException("[" + str(err.error_code) + "] " + ffi.string(err.message).decode())
+helics.capi.HelicsException: [-1] Unable to connect to broker->unable to register federate
